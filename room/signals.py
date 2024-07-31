@@ -10,11 +10,12 @@ def update_room_details (created, instance:Message, **kwargs) :
     
     username = instance.username
     room = instance.room
-    increse_users = Message.objects.filter(username=username, room=room).count() == 1
 
-    if increse_users :
+    increes_users = Message.objects.filter(room=room, username=username).count() == 1
+    
+    if increes_users:
         room.total_users += 1
-
+    
     room.total_msgs += 1
     room.save()
 
